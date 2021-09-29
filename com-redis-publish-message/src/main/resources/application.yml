@@ -1,0 +1,24 @@
+server:
+  port: 7888
+# 日志配置
+logging:
+  config: classpath:logback-spring.xml
+
+spring:
+  redis:
+    #host: 10.2.13.6 #sentinel模式下不用配
+    #port: 5001 #sentinel模式下不用配
+    timeout: 10000
+    database: 0
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+    sentinel:
+      master: mymaster
+      nodes:
+        - 10.2.13.6:5008
+        - 10.2.13.6:5009
+        - 10.2.13.6:5010
